@@ -7,14 +7,41 @@ from collections import defaultdict
 from pathlib import Path
 
 import markdown
+import nbformat
+from nbconvert import HTMLExporter
 from PIL import Image
 
 NAV_ITEMS = [
     ('about', 'About'),
     ('usage', 'Usage'),
     ('benchmark', 'Environments'),
+    ('tutorials', 'Tutorials'),
     ('results', 'Results'),
     ('real-robots', 'Real Robots'),
+]
+
+NOTEBOOKS = [
+    {
+        'path': 'prpl-mono/kinder/notebooks/getting_started.ipynb',
+        'slug': 'getting-started',
+        'title': 'Getting Started',
+        'description': 'Walk through the basics: discovering environments, creating one, taking actions, and rendering a video.',
+        'package': 'kinder',
+    },
+    {
+        'path': 'prpl-mono/kinder/notebooks/model_predictive_control.ipynb',
+        'slug': 'model-predictive-control',
+        'title': 'Model-Predictive Control',
+        'description': 'Use get_state, set_state, and get_next_state for model-based planning with random-shooting MPC.',
+        'package': 'kinder',
+    },
+    {
+        'path': 'prpl-mono/kinder-bilevel-planning/notebooks/bilevel_planning.ipynb',
+        'slug': 'bilevel-planning',
+        'title': 'Bilevel Planning',
+        'description': 'Set up predicates, operators, and skills, then run a SESAME-style bilevel planner on an Obstruction2D task.',
+        'package': 'kinder-bilevel-planning',
+    },
 ]
 
 FOOTER_TEXT = '&copy; 2026 KinDER. All rights reserved.'
@@ -198,17 +225,17 @@ def extract_gifs_from_markdown(content, depth=2):
     # Extract Initial State Distribution GIF
     init_match = re.search(r'## Initial State Distribution\s*\n!\[.*?\]\((\.\.\/\.\.\/assets/[^\)]+\.gif)\)', content)
     if init_match:
-        gifs['initial'] = init_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/prbench/docs/envs/assets/')
+        gifs['initial'] = init_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/kinder/docs/envs/assets/')
 
     # Extract Random Action Behavior GIF
     random_match = re.search(r'## Random Action Behavior\s*\n!\[.*?\]\((\.\.\/\.\.\/assets/[^\)]+\.gif)\)', content)
     if random_match:
-        gifs['random'] = random_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/prbench/docs/envs/assets/')
+        gifs['random'] = random_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/kinder/docs/envs/assets/')
 
     # Extract Example Demonstration GIF
     demo_match = re.search(r'## Example Demonstration\s*\n!\[.*?\]\((\.\.\/\.\.\/assets/[^\)]+\.gif)\)', content)
     if demo_match:
-        gifs['demo'] = demo_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/prbench/docs/envs/assets/')
+        gifs['demo'] = demo_match.group(1).replace('../../assets/', f'{prefix}prpl-mono/kinder/docs/envs/assets/')
 
     return gifs
 
@@ -306,10 +333,10 @@ def filter_markdown_for_html(content, depth=2):
     prefix = '../' * depth
     result = '\n'.join(processed)
     # Handle both direct assets/ paths and relative ../../assets/ paths from variant files
-    result = result.replace('](../../assets/', f']({prefix}prpl-mono/prbench/docs/envs/assets/')
-    result = result.replace('](assets/', f']({prefix}prpl-mono/prbench/docs/envs/assets/')
-    result = result.replace('="../../assets/', f'="{prefix}prpl-mono/prbench/docs/envs/assets/')
-    result = result.replace('="assets/', f'="{prefix}prpl-mono/prbench/docs/envs/assets/')
+    result = result.replace('](../../assets/', f']({prefix}prpl-mono/kinder/docs/envs/assets/')
+    result = result.replace('](assets/', f']({prefix}prpl-mono/kinder/docs/envs/assets/')
+    result = result.replace('="../../assets/', f'="{prefix}prpl-mono/kinder/docs/envs/assets/')
+    result = result.replace('="assets/', f'="{prefix}prpl-mono/kinder/docs/envs/assets/')
     return result
 
 
@@ -477,7 +504,7 @@ def generate_hero_section_html(groups):
         if not group_data.get('hero_gif'):
             continue
         slug = slugify(group_name)
-        gif_path = f'prpl-mono/prbench/docs/envs/assets/group_gifs/{group_name}.gif'
+        gif_path = f'prpl-mono/kinder/docs/envs/assets/group_gifs/{group_name}.gif'
         png_path = f'environments/thumbnails/{group_name}.png'
         items.append(
             f'                        <a href="environments/{slug}/index.html" class="demo-gif-item" '
@@ -521,6 +548,124 @@ def generate_index_category_html(category_name, groups):
 '''
 
 
+def preprocess_notebook_gif_outputs(nb):
+    """Convert image/gif outputs to HTML so nbconvert renders them."""
+    for cell in nb.cells:
+        if cell.cell_type != 'code':
+            continue
+        for output in cell.get('outputs', []):
+            data = output.get('data', {})
+            if 'image/gif' not in data:
+                continue
+            gif_b64 = data['image/gif']
+            if isinstance(gif_b64, list):
+                gif_b64 = ''.join(gif_b64)
+            html = f'<img src="data:image/gif;base64,{gif_b64}" alt="Output">'
+            data['text/html'] = html
+            del data['image/gif']
+            if 'text/plain' in data:
+                del data['text/plain']
+
+
+def notebook_to_html(notebook_path):
+    """Convert a Jupyter notebook to an HTML body fragment.
+
+    Returns the HTML content of the notebook cells (no full page wrapper)
+    and the Pygments CSS needed for syntax highlighting.
+    """
+    nb = nbformat.read(notebook_path, as_version=4)
+    preprocess_notebook_gif_outputs(nb)
+    exporter = HTMLExporter()
+    exporter.template_name = 'basic'
+    exporter.exclude_input_prompt = True
+    exporter.exclude_output_prompt = True
+    full_html, _resources = exporter.from_notebook_node(nb)
+
+    # Extract body content (drop the html/head/body wrapper)
+    body_match = re.search(r'<body[^>]*>(.*)</body>', full_html, re.DOTALL)
+    body = body_match.group(1).strip() if body_match else full_html
+
+    # Extract the Pygments syntax highlighting CSS (first <style> block)
+    pygments_css = ''
+    style_match = re.search(r'<style[^>]*>(.*?)</style>', full_html, re.DOTALL)
+    if style_match:
+        pygments_css = style_match.group(1)
+
+    # Remove anchor-link pilcrows that nbconvert adds to headings
+    body = re.sub(r'<a class="anchor-link" href="[^"]*">.*?</a>', '', body)
+
+    return body, pygments_css
+
+
+def create_notebook_page(nb_config, body_html, pygments_css):
+    """Create an HTML page for a single notebook tutorial."""
+    prefix = '../'
+    breadcrumb = (f'<a href="{prefix}index.html#tutorials">Tutorials</a> / '
+                  f'<span>{nb_config["title"]}</span>')
+
+    content = f'''
+                <div class="notebook-content">
+                    <div class="notebook-toolbar">
+                        <a href="{nb_config['slug']}.ipynb" download class="notebook-download">Download notebook (.ipynb)</a>
+                    </div>
+                    {body_html}
+                </div>
+'''
+    # Build page with pygments CSS included
+    return f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{nb_config['title']} | KinDER Tutorials</title>
+    <link rel="stylesheet" href="{prefix}styles.css">
+    <link rel="stylesheet" href="{prefix}environments/environment.css">
+    <link rel="stylesheet" href="{prefix}tutorials/notebook.css">
+    <style>{pygments_css}</style>
+</head>
+<body class="notebook-page">
+{generate_header(prefix, 'KinDER')}
+    <main>
+        <section class="environment-detail">
+            <div class="container">
+                <div class="breadcrumb">{breadcrumb}</div>
+{content}
+                <div class="back-link">
+                    <a href="{prefix}index.html#tutorials">&larr; Back to Tutorials</a>
+                </div>
+            </div>
+        </section>
+    </main>
+{generate_footer()}
+</body>
+</html>
+"""
+
+
+def generate_tutorials_section_html(notebooks):
+    """Generate the tutorials section HTML for index.html."""
+    cards = []
+    for nb in notebooks:
+        cards.append(f'''                    <div class="tutorial-card">
+                        <a href="tutorials/{nb['slug']}.html" class="tutorial-link">
+                            <span class="tutorial-package">{nb['package']}</span>
+                            <h3>{nb['title']}</h3>
+                            <p>{nb['description']}</p>
+                        </a>
+                    </div>''')
+
+    return f'''        <section id="tutorials">
+            <div class="container">
+                <h2>Tutorials</h2>
+                <p>Step-by-step tutorials for getting started with KinDER.</p>
+
+                <div class="tutorials-grid">
+{chr(10).join(cards)}
+                </div>
+            </div>
+        </section>'''
+
+
 def load_whitelist(path):
     """Load environment whitelist from file with category assignments.
 
@@ -550,10 +695,10 @@ def main():
     print("KinDER Environment Page Generator")
     print("=" * 60)
 
-    md_dir = Path('prpl-mono/prbench/docs/envs')
+    md_dir = Path('prpl-mono/kinder/docs/envs')
     assets_dir = md_dir / 'assets'
     if not md_dir.exists():
-        print("Error: prpl-mono/prbench/docs/envs/ directory not found!")
+        print("Error: prpl-mono/kinder/docs/envs/ directory not found!")
         return
 
     # Load whitelist
@@ -628,7 +773,7 @@ def main():
             if extract_first_frame_as_png(hero_gif, png_path, crop_square=crop_square):
                 png_count += 1
             # Set URLs for use in templates (relative to group page at depth=2)
-            group_data['hero_gif_url'] = f'../../prpl-mono/prbench/docs/envs/assets/group_gifs/{group_name}.gif'
+            group_data['hero_gif_url'] = f'../../prpl-mono/kinder/docs/envs/assets/group_gifs/{group_name}.gif'
             group_data['thumbnail_url'] = f'../thumbnails/{group_name}.png'
         else:
             group_data['hero_gif_url'] = ''
@@ -665,6 +810,24 @@ def main():
             (out_dir / f"{slugify(cat_name)}.html").write_text(html, encoding='utf-8')
     print(f"  Generated {len(categories)} category pages")
 
+    # Generate tutorial pages from notebooks
+    print("\nGenerating tutorial pages...")
+    tutorials_dir = Path('tutorials')
+    tutorials_dir.mkdir(parents=True, exist_ok=True)
+    for old_file in tutorials_dir.glob('*.html'):
+        old_file.unlink()
+    for nb_config in NOTEBOOKS:
+        nb_path = Path(nb_config['path'])
+        if not nb_path.exists():
+            print(f"  Warning: {nb_path} not found, skipping")
+            continue
+        body_html, pygments_css = notebook_to_html(nb_path)
+        html = create_notebook_page(nb_config, body_html, pygments_css)
+        (tutorials_dir / f"{nb_config['slug']}.html").write_text(html, encoding='utf-8')
+        # Copy the .ipynb file so it can be downloaded
+        shutil.copy2(nb_path, tutorials_dir / f"{nb_config['slug']}.ipynb")
+        print(f"  Generated {nb_config['slug']}.html")
+
     # Generate index.html from template
     print("\nGenerating index.html from template...")
     template_path = Path('index_template.html')
@@ -698,6 +861,9 @@ def main():
         </section>'''
 
         content = content.replace('{{BENCHMARK_SECTION}}', benchmark_html)
+
+        tutorials_html = generate_tutorials_section_html(NOTEBOOKS)
+        content = content.replace('{{TUTORIALS_SECTION}}', tutorials_html)
 
         results_html = generate_results_section_html()
         content = content.replace('{{RESULTS_SECTION}}', results_html)
