@@ -76,23 +76,22 @@
 
         <section id="usage">
             <div class="container">
-                <h2>KinDERGym: Usage</h2>
+                <h2>Installation and Usage</h2>
                 <h3>Installation</h3>
 
-                <p>KinDER will be available on PyPI following publication. At that time, you will be able to install it with <code>pip install kinder</code>. Until then, you can install it from source as follows. First, we strongly recommend <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank">uv</a>. Then choose one of the following based on your needs:</p>
-
                 <div class="code-block">
-                    <pre><code class="language-bash"># Core dependencies only
-# Everything (excluding develop)
-uv pip install -e ".[all]"
+                    <pre><code class="language-bash">pip install kindergarden          # Core dependencies only
+pip install kindergarden[all]     # All environment dependencies
 
-# Specific environment categories
-uv pip install -e ".[kinematic2d]"      # Kinematic 2D only
-uv pip install -e ".[dynamic2d]"   # Dynamic 2D only
-uv pip install -e ".[geom3d]"      # Kinematic 3D only
-uv pip install -e ".[dynamic3d]"     # Dynamic 3D only
+# Or install specific environment categories
+pip install kindergarden[kinematic2d]
+pip install kindergarden[dynamic2d]
+pip install kindergarden[kinematic3d]
+pip install kindergarden[tidybot]
 </code></pre>
                 </div>
+
+                <p>For development or installing from source, see the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden" target="_blank">GitHub repository</a>.</p>
 
                 <h3>Basic Usage (Gym API)</h3>
                 <div class="code-block">
@@ -154,12 +153,42 @@ object_centric_obs = env.observation_space.devectorize(vec_obs)
 recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></pre>
                     </div>
                 </div>
+
+                <h3>Baselines</h3>
+                <p>We provide implementations of several baselines in the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines" target="_blank">kinder-baselines</a> repository. Installation and usage instructions are available there.</p>
+
+                <div class="challenges-grid">
+                    <div class="challenge-card">
+                        <h4>Bilevel Planning</h4>
+                        <p>TAMP-style bilevel planning</p>
+                    </div>
+                    <div class="challenge-card">
+                        <h4>Domain-Specific Policies</h4>
+                        <p>Hand-engineered policies with domain-specific models</p>
+                    </div>
+                    <div class="challenge-card">
+                        <h4>Imitation Learning</h4>
+                        <p>Learning from demonstrations</p>
+                    </div>
+                    <div class="challenge-card">
+                        <h4>Reinforcement Learning</h4>
+                        <p>RL with sparse and shaped rewards</p>
+                    </div>
+                    <div class="challenge-card">
+                        <h4>VLA Policies</h4>
+                        <p>Finetuning pi-0.5 with demonstrations</p>
+                    </div>
+                    <div class="challenge-card">
+                        <h4>LLM & VLM Planning</h4>
+                        <p>Large language and vision-language model based planning</p>
+                    </div>
+                </div>
             </div>
         </section>
 
-{{BENCHMARK_SECTION}}
-
 {{TUTORIALS_SECTION}}
+
+{{BENCHMARK_SECTION}}
 
 {{RESULTS_SECTION}}
 

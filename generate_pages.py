@@ -13,9 +13,9 @@ from PIL import Image
 
 NAV_ITEMS = [
     ('about', 'About'),
-    ('usage', 'Usage'),
-    ('benchmark', 'Environments'),
+    ('usage', 'Installation'),
     ('tutorials', 'Tutorials'),
+    ('benchmark', 'Environments'),
     ('results', 'Results'),
     ('real-robots', 'Real Robots'),
 ]
