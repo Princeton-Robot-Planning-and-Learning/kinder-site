@@ -257,12 +257,11 @@
                 <h3>Installation</h3>
 
                 <div class="code-block">
-                    <pre><code class="language-bash">pip install kindergarden          # Core dependencies only
-pip install kindergarden[all]     # All environment dependencies
+                    <pre><code class="language-bash">pip install kindergarden                # All environment dependencies
 
-# Or install specific environment categories
-pip install kindergarden[kinematic2d]
+# Or install only specific environment categories
 pip install kindergarden[dynamic2d]
+pip install kindergarden[kinematic2d]
 pip install kindergarden[kinematic3d]
 pip install kindergarden[dynamic3d]
 </code></pre>
@@ -278,7 +277,10 @@ env = kinder.make("kinder/Obstruction2D-o3-v0")  # 3 obstructions
 obs, info = env.reset()  # procedural generation
 action = env.action_space.sample()
 next_obs, reward, terminated, truncated, info = env.step(action)
-img = env.render()</code></pre>
+img = env.render()
+
+import imageio.v2 as iio
+iio.imwrite("obs.png", img)  # open obs.png to see the scene!</code></pre>
                 </div>
 
                 <h3 class="collapsible-header" onclick="toggleCollapsible('object-centric-section')">
