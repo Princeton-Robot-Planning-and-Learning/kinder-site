@@ -30,11 +30,11 @@ NOTEBOOKS = [
         'package': 'kinder',
     },
     {
-        'path': 'kindergarden/notebooks/model_predictive_control.ipynb',
+        'path': 'kinder-baselines/kinder-trajopt/notebooks/model_predictive_control.ipynb',
         'slug': 'model-predictive-control',
         'title': 'Model-Predictive Control',
         'description': 'Use get_state, set_state, and get_next_state for model-based planning with random-shooting MPC.',
-        'package': 'kinder',
+        'package': 'kinder-trajopt',
     },
     {
         'path': 'kinder-baselines/kinder-bilevel-planning/notebooks/bilevel_planning.ipynb',
