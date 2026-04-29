@@ -1,4 +1,5 @@
 markdown>=3.4.0
 nbconvert>=7.0.0
 nbformat>=5.7
+Pillow>=10.0.0
 

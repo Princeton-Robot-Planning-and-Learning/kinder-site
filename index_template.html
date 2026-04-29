@@ -16,66 +16,70 @@
 {{HEADER}}
 
     <main>
+        <span id="top" aria-hidden="true"></span>
         <section class="title-authors-section">
             <div class="container">
                 <h1>KinDER: A Physical Reasoning Benchmark<br class="title-break"> for Robot Learning and Planning</h1>
 
-                <div class="authors-list">
-                    <div class="author">
-                        <span class="author-name">Yixuan Huang*</span>
-                        <span class="author-affiliation">Princeton</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Bowen Li*</span>
-                        <span class="author-affiliation">CMU</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Vaibhav Saxena*</span>
-                        <span class="author-affiliation">Georgia Tech</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Yichao Liang</span>
-                        <span class="author-affiliation">Cambridge</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Utkarsh Mishra</span>
-                        <span class="author-affiliation">Georgia Tech</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Liang Ji</span>
-                        <span class="author-affiliation">Princeton</span>
-                    </div>
-                    <div class="author-break"></div>
-                    <div class="author">
-                        <span class="author-name">Lihan Zha</span>
-                        <span class="author-affiliation">Princeton</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Jimmy Wu</span>
-                        <span class="author-affiliation">NVIDIA</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Nishanth Kumar</span>
-                        <span class="author-affiliation">MIT</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Sebastian Scherer</span>
-                        <span class="author-affiliation">CMU</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Danfei Xu</span>
-                        <span class="author-affiliation">Georgia Tech, NVIDIA</span>
-                    </div>
-                    <div class="author">
-                        <span class="author-name">Tom Silver</span>
-                        <span class="author-affiliation">Princeton</span>
-                    </div>
+                <p class="authors-line">
+                    <span class="author"><a class="author-name" href="https://yixuanhuang98.github.io/" target="_blank" rel="noopener">Yixuan Huang</a><sup class="author-mark">*,1</sup></span>
+                    <span class="author"><a class="author-name" href="https://jaraxxus-me.github.io/" target="_blank" rel="noopener">Bowen Li</a><sup class="author-mark">*,2</sup></span>
+                    <span class="author"><a class="author-name" href="https://sites.google.com/view/vaibhavsaxena" target="_blank" rel="noopener">Vaibhav Saxena</a><sup class="author-mark">*,3</sup></span>
+                    <span class="author"><a class="author-name" href="https://yichao-liang.github.io/" target="_blank" rel="noopener">Yichao Liang</a><sup class="author-mark">4</sup></span>
+                    <span class="author"><a class="author-name" href="https://umishra.me/" target="_blank" rel="noopener">Utkarsh Mishra</a><sup class="author-mark">3</sup></span>
+                    <span class="author"><span class="author-name">Liang Ji</span><sup class="author-mark">1</sup></span>
+                    <span class="author"><a class="author-name" href="https://lihzha.github.io/" target="_blank" rel="noopener">Lihan Zha</a><sup class="author-mark">1</sup></span>
+                    <span class="author"><a class="author-name" href="https://jimmyyhwu.github.io/" target="_blank" rel="noopener">Jimmy Wu</a><sup class="author-mark">5</sup></span>
+                    <span class="author"><a class="author-name" href="https://nishanthjkumar.com/" target="_blank" rel="noopener">Nishanth Kumar</a><sup class="author-mark">6</sup></span>
+                    <span class="author"><a class="author-name" href="https://theairlab.org/team/sebastian/" target="_blank" rel="noopener">Sebastian Scherer</a><sup class="author-mark">2</sup></span>
+                    <span class="author"><a class="author-name" href="https://faculty.cc.gatech.edu/~danfei/" target="_blank" rel="noopener">Danfei Xu</a><sup class="author-mark">3,5</sup></span>
+                    <span class="author"><a class="author-name" href="https://tomsilver.github.io/" target="_blank" rel="noopener">Tom Silver</a><sup class="author-mark">1</sup></span>
+                </p>
+
+                <p class="affiliations-line">
+                    <span class="affiliation"><sup>1</sup><a href="https://www.princeton.edu/" target="_blank" rel="noopener">Princeton</a></span>
+                    <span class="affiliation"><sup>2</sup><a href="https://www.cmu.edu/" target="_blank" rel="noopener">CMU</a></span>
+                    <span class="affiliation"><sup>3</sup><a href="https://www.gatech.edu/" target="_blank" rel="noopener">Georgia Tech</a></span>
+                    <span class="affiliation"><sup>4</sup><a href="https://www.cam.ac.uk/" target="_blank" rel="noopener">Cambridge</a></span>
+                    <span class="affiliation"><sup>5</sup><a href="https://www.nvidia.com/" target="_blank" rel="noopener">NVIDIA</a></span>
+                    <span class="affiliation"><sup>6</sup><a href="https://www.mit.edu/" target="_blank" rel="noopener">MIT</a></span>
+                </p>
+
+                <p class="equal-contribution"><sup>*</sup>Equal contribution.</p>
+
+                <p class="venue-line">Robotics: Science and Systems (RSS), 2026</p>
+
+                <div class="action-buttons">
+                    <a href="https://arxiv.org/abs/2604.25788" target="_blank" rel="noopener" class="action-btn" aria-label="arXiv abstract">
+                        <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M3 6h18M5 6v13a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V6"/>
+                            <path d="M9 11l3 4 3-4"/>
+                            <line x1="12" y1="6" x2="12" y2="15"/>
+                        </svg>
+                        <span>arXiv</span>
+                    </a>
+                    <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden" target="_blank" rel="noopener" class="action-btn" aria-label="Source code on GitHub">
+                        <svg class="action-btn-icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                            <path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.4 3-.405 1.02.005 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/>
+                        </svg>
+                        <span>Code</span>
+                    </a>
+                    <a href="#citation" class="action-btn" aria-label="Citation / BibTeX">
+                        <svg class="action-btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M7 7H4v6h3a3 3 0 0 0 3-3V7"/>
+                            <path d="M17 7h-3v6h3a3 3 0 0 0 3-3V7"/>
+                        </svg>
+                        <span>BibTeX</span>
+                    </a>
                 </div>
 
-                <p class="equal-contribution">*Equal contribution</p>
-                <p class="equal-contribution">Robotics Science and Systems (RSS), 2026</p>
+                <div class="tldr">
+                    <span class="tldr-label">tl;dr</span>
+                    <p>KinDER is a benchmark that enables a very wide variety of methods --- including Imitation Learning (IL), Reinforcment Learning (RL), Foundation Models, and Task and Motion Planning (TAMP) --- to be rigorously compared in their ability to perform embodied <i>physical reasoning</i> across diverse environments and conditions.</p>
+                </div>
             </div>
         </section>
+        <span id="hero-end-sentinel" aria-hidden="true"></span>
 
 {{HERO_SECTION}}
 
@@ -262,6 +266,31 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
             </div>
         </section>
 
+        <section id="citation">
+            <div class="container">
+                <h2>Citation</h2>
+                <p>If you use KinDER in your research, please cite our RSS 2026 paper:</p>
+
+                <div class="citation-block">
+                    <button type="button" class="citation-copy" onclick="copyCitation(this)" aria-label="Copy BibTeX to clipboard">
+                        <svg class="citation-copy-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                            <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                        </svg>
+                        <span class="citation-copy-label">Copy</span>
+                    </button>
+                    <pre><code id="bibtex-content">@inproceedings{huang2026kinder,
+  title     = {KinDER: A Physical Reasoning Benchmark for Robot Learning and Planning},
+  author    = {Huang, Yixuan and Li, Bowen and Saxena, Vaibhav and Liang, Yichao
+               and Mishra, Utkarsh and Ji, Liang and Zha, Lihan and Wu, Jimmy
+               and Kumar, Nishanth and Scherer, Sebastian and Xu, Danfei and Silver, Tom},
+  booktitle = {Robotics: Science and Systems (RSS)},
+  year      = {2026}
+}</code></pre>
+                </div>
+            </div>
+        </section>
+
         <section id="contact">
             <div class="container">
                 <h2>Contact</h2>
@@ -291,6 +320,62 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                 icon.textContent = '▲';
             }
         }
+
+        // Copy the BibTeX block to the clipboard from the citation section.
+        function copyCitation(btn) {
+            const code = document.getElementById('bibtex-content');
+            if (!code) return;
+            const text = code.innerText;
+            const label = btn.querySelector('.citation-copy-label');
+            const restore = label ? label.textContent : null;
+            const showCopied = () => {
+                btn.classList.add('copied');
+                if (label) label.textContent = 'Copied!';
+                setTimeout(() => {
+                    btn.classList.remove('copied');
+                    if (label && restore !== null) label.textContent = restore;
+                }, 1600);
+            };
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(showCopied).catch(() => {
+                    // Fallback below.
+                    fallbackCopy(text);
+                    showCopied();
+                });
+            } else {
+                fallbackCopy(text);
+                showCopied();
+            }
+        }
+
+        function fallbackCopy(text) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.setAttribute('readonly', '');
+            ta.style.position = 'absolute';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try { document.execCommand('copy'); } catch (_) { /* noop */ }
+            document.body.removeChild(ta);
+        }
+
+        // Reveal the floating header once the hero scrolls out of view.
+        document.addEventListener('DOMContentLoaded', function() {
+            const floatingHeader = document.querySelector('header.header-floating');
+            const sentinel = document.getElementById('hero-end-sentinel');
+            if (floatingHeader && sentinel && 'IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    for (const entry of entries) {
+                        // Sentinel is in the document flow; once it's scrolled
+                        // above the viewport (not intersecting), reveal the nav.
+                        const passed = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+                        floatingHeader.classList.toggle('visible', passed);
+                    }
+                }, { threshold: 0 });
+                observer.observe(sentinel);
+            }
+        });
 
         // GIF hover play/pause functionality
         document.addEventListener('DOMContentLoaded', function() {
