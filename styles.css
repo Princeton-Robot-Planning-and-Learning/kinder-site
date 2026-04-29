@@ -148,6 +148,18 @@ header h1 {
     font-weight: 700;
 }
 
+.venue-line {
+    display: inline-block;
+    margin: 0.6rem auto 0;
+    padding: 0.3rem 0.85rem;
+    background-color: #e6e2fb;
+    color: #4c4c9d;
+    font-size: 0.92rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    border-radius: 999px;
+}
+
 .authors-line {
     max-width: 950px;
     margin: 0 auto 0.4rem;
@@ -242,7 +254,7 @@ a.author-name:focus {
     flex-wrap: wrap;
     justify-content: center;
     gap: 0.5rem;
-    margin-top: 0.85rem;
+    margin-top: 0.45rem;
 }
 
 .action-btn {
