@@ -18,6 +18,7 @@ NAV_ITEMS = [
     ('benchmark', 'Environments'),
     ('results', 'Results'),
     ('real-robots', 'Real Robots'),
+    ('citation', 'Citation'),
     ('contact', 'Contact'),
 ]
 
@@ -48,11 +49,12 @@ NOTEBOOKS = [
 FOOTER_TEXT = '&copy; 2026 KinDER. All rights reserved.'
 
 
-def generate_header(prefix='', title='KinDER'):
+def generate_header(prefix='', title='KinDER', floating=False):
     """Generate the site header HTML.
 
     prefix: path prefix for links ('' for index.html, '../' for depth=1, etc.)
     title: the h1 title text
+    floating: if True, render a hero-merged floating nav (hidden until scroll)
     """
     if prefix:
         nav_links = '\n'.join(
@@ -65,9 +67,12 @@ def generate_header(prefix='', title='KinDER'):
             f'                    <li><a href="#{id}">{label}</a></li>'
             for id, label in NAV_ITEMS
         )
-        title_html = title
+        # On index, link the wordmark back to the top of the page.
+        title_html = f'<a href="#top" style="color: white; text-decoration: none;">{title}</a>'
 
-    return f'''    <header>
+    header_class = ' class="header-floating"' if floating else ''
+
+    return f'''    <header{header_class}>
         <nav>
             <div class="container">
                 <h1>{title_html}</h1>
@@ -836,10 +841,12 @@ def main():
     if template_path.exists():
         content = template_path.read_text(encoding='utf-8')
 
-        # Replace header and footer
+        # Replace header and footer. On the index, the full title lives in
+        # the hero section, so the floating nav uses the short wordmark.
         content = content.replace('{{HEADER}}', generate_header(
             prefix='',
-            title='KinDER: A Physical Reasoning Benchmark for Robot Learning and Planning'
+            title='KinDER',
+            floating=True,
         ))
         content = content.replace('{{FOOTER}}', generate_footer())
 

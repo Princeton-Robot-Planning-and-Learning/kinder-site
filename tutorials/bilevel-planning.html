@@ -70,6 +70,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
                     <li><a href="../index.html#benchmark">Environments</a></li>
                     <li><a href="../index.html#results">Results</a></li>
                     <li><a href="../index.html#real-robots">Real Robots</a></li>
+                    <li><a href="../index.html#citation">Citation</a></li>
                     <li><a href="../index.html#contact">Contact</a></li>
                 </ul>
             </div>
@@ -100,10 +101,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Installation">Installation</h2><div class="highlight"><pre><span></span>pip install kindergarden<span class="o">[</span>kinematic2d<span class="o">]</span>
-git clone https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines.git
-<span class="nb">cd</span> kinder-baselines
-pip install -e kinder-bilevel-planning
+<h2 id="Installation">Installation</h2><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>kindergarden<span class="o">[</span>kinematic2d<span class="o">]</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines.git
+<span class="nb">cd</span><span class="w"> </span>kinder-baselines
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>kinder-bilevel-planning
 </pre></div>
 </div>
 </div>
@@ -115,28 +116,28 @@ pip install -e kinder-bilevel-planning
 <div class="jp-InputArea jp-Cell-inputArea">
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">io</span> <span class="kn">import</span> <span class="n">BytesIO</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">io</span><span class="w"> </span><span class="kn">import</span> <span class="n">BytesIO</span>
 
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">PILImage</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span> <span class="k">as</span> <span class="n">PILImage</span>
 
-<span class="kn">import</span> <span class="nn">kinder</span>
-<span class="kn">from</span> <span class="nn">bilevel_planning.abstract_plan_generators.heuristic_search_plan_generator</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">kinder</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bilevel_planning.abstract_plan_generators.heuristic_search_plan_generator</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">RelationalHeuristicSearchAbstractPlanGenerator</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">bilevel_planning.bilevel_planners.sesame_planner</span> <span class="kn">import</span> <span class="n">SesamePlanner</span>
-<span class="kn">from</span> <span class="nn">bilevel_planning.structs</span> <span class="kn">import</span> <span class="n">PlanningProblem</span>
-<span class="kn">from</span> <span class="nn">bilevel_planning.trajectory_samplers.parameterized_controller_sampler</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bilevel_planning.bilevel_planners.sesame_planner</span><span class="w"> </span><span class="kn">import</span> <span class="n">SesamePlanner</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bilevel_planning.structs</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlanningProblem</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bilevel_planning.trajectory_samplers.parameterized_controller_sampler</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">ParameterizedControllerTrajectorySampler</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">bilevel_planning.utils</span> <span class="kn">import</span> <span class="p">(</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">bilevel_planning.utils</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
     <span class="n">RelationalAbstractSuccessorGenerator</span><span class="p">,</span>
     <span class="n">RelationalControllerGenerator</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="kn">from</span> <span class="nn">kinder_bilevel_planning.agent</span> <span class="kn">import</span> <span class="n">BilevelPlanningAgent</span>
-<span class="kn">from</span> <span class="nn">kinder_bilevel_planning.env_models</span> <span class="kn">import</span> <span class="n">create_bilevel_planning_models</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kinder_bilevel_planning.agent</span><span class="w"> </span><span class="kn">import</span> <span class="n">BilevelPlanningAgent</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">kinder_bilevel_planning.env_models</span><span class="w"> </span><span class="kn">import</span> <span class="n">create_bilevel_planning_models</span>
 </pre></div>
 </div>
 </div>
