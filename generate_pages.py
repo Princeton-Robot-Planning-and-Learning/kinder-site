@@ -493,7 +493,7 @@ def generate_results_section_html():
     """Generate the results section HTML with figure."""
     return '''        <section id="results">
             <div class="container">
-                <h2>KinderBench: Benchmark and Results</h2>
+                <h2>KinDERBench: Benchmark and Results</h2>
                 <p>See the plot below for a summary of our main empirical results. See paper for details and additional results with additional metrics.</p>
                 <img src="assets/figure1_bar_v4.png" alt="Benchmark results" class="results-figure">
                 <p>Success rates: mean ± std across 5 seeds and 50 episodes per seed.</p>
