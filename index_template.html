@@ -75,7 +75,7 @@
 
                 <div class="tldr">
                     <span class="tldr-label">tl;dr</span>
-                    <p>KinDER is a benchmark that enables a very wide variety of methods --- including Imitation Learning (IL), Reinforcment Learning (RL), Foundation Models, and Task and Motion Planning (TAMP) --- to be rigorously compared in their ability to perform embodied <i>physical reasoning</i> across diverse environments and conditions.</p>
+                    <p>KinDER is a stress test for Kinematic and Dynamic Embodied Reasoning with spatial relations, nonprehensile multi-object manipulation, combinatorial geometric constraints, tool use, and dynamic constraints. We evaluate imitiation learning (diffusion policies, VLAs), reinforcement learning (PPO, SAC, MBRL), foundation model-based planning (LLM, VLM), diffusion-based planning (GSC), and task and motion planning (bilevel planning). No methods pass. Physical reasoning remains a core open challenge for robotics.</p>
                 </div>
             </div>
         </section>
@@ -173,7 +173,7 @@ iio.imwrite("obs.png", img)  # open obs.png to see the scene!</code></pre>
                     <p>All environments in KinDER use object-centric states:</p>
 
                     <div class="code-block">
-                        <pre><code class="language-python">from kinder.envs.geom2d.obstruction2d import ObjectCentricObstruction2DEnv
+                        <pre><code class="language-python">from kinder.envs.kinematic2d.obstruction2d import ObjectCentricObstruction2DEnv
 env = ObjectCentricObstruction2DEnv(num_obstructions=3)
 obs, _ = env.reset(seed=123)
 print(obs.pretty_str())</code></pre>
