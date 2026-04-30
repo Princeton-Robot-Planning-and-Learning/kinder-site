@@ -140,12 +140,20 @@ header h1 {
     color: #333;
 }
 
+.title-logo {
+    display: block;
+    width: auto;
+    max-width: min(420px, 80%);
+    height: auto;
+    margin: 0 auto 1.25rem;
+}
+
 .title-authors-section h1 {
-    font-size: 2rem;
-    line-height: 1.2;
+    font-size: 1.6rem;
+    line-height: 1.25;
     color: #2c3e50;
     margin-bottom: 1rem;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .venue-line {
@@ -927,8 +935,13 @@ footer {
         padding: 2.5rem 0 1.25rem;
     }
 
+    .title-logo {
+        max-width: min(300px, 75%);
+        margin-bottom: 1rem;
+    }
+
     .title-authors-section h1 {
-        font-size: 1.7rem;
+        font-size: 1.35rem;
         margin-bottom: 1rem;
     }
 
