@@ -512,10 +512,14 @@ def generate_hero_section_html(groups):
         slug = slugify(group_name)
         gif_path = f'kindergarden/docs/envs/assets/group_gifs/{group_name}.gif'
         png_path = f'environments/thumbnails/{group_name}.png'
+        # Dynamic 3D thumbnails are center-cropped to square; force the GIF to
+        # match the same crop on hover so the layout doesn't shift.
+        is_square = group_data.get('category') == 'Dynamic 3D'
+        img_style = ' style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: 100%;"' if is_square else ''
         items.append(
             f'                        <a href="environments/{slug}/index.html" class="demo-gif-item" '
             f'data-gif="{gif_path}" data-static="{png_path}">\n'
-            f'                            <img src="{png_path}" alt="{group_name} Demo">\n'
+            f'                            <img src="{png_path}" alt="{group_name} Demo"{img_style}>\n'
             f'                            <span class="demo-label">{group_name}</span>\n'
             f'                        </a>'
         )
