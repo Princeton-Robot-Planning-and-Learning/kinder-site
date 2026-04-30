@@ -90,7 +90,8 @@ def generate_footer():
         <div class="container">
             <p>{FOOTER_TEXT}</p>
         </div>
-    </footer>'''
+    </footer>
+    <script data-goatcounter="https://kinder.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>'''
 
 
 def base_template(title, breadcrumb_html, content_html, depth=1):
