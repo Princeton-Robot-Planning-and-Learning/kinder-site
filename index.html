@@ -217,8 +217,8 @@
 
                 </div>
 
-                <h3 class="collapsible-header" onclick="toggleCollapsible('challenges-section')">
-                    What Makes KinDER Challenging? <span class="toggle-icon" id="challenges-toggle">▼</span>
+                <h3 class="collapsible-header" role="button" tabindex="0" aria-expanded="false" aria-controls="challenges-section" onclick="toggleCollapsible('challenges-section')" onkeydown="handleCollapsibleKey(event, 'challenges-section')">
+                    What Makes KinDER Challenging? <span class="toggle-icon" id="challenges-toggle" aria-hidden="true">▼</span>
                 </h3>
 
                 <div class="collapsible-content" id="challenges-section">
@@ -245,7 +245,7 @@
 
                         <div class="challenge-card">
                             <h4>For Task and Motion Planning</h4>
-                            <p>Models for TAMP are optionally available in the companion <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines" target="_blank">kinder-baselines</a> package, but they are not guaranteed to solve every environment — especially in the dynamic settings — and planning remains slow when many objects are involved.</p>
+                            <p>Models for TAMP are optionally available in the companion <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines" target="_blank" rel="noopener">kinder-baselines</a> package, but they are not guaranteed to solve every environment — especially in the dynamic settings — and planning remains slow when many objects are involved.</p>
                         </div>
 
                         <div class="challenge-card">
@@ -279,7 +279,7 @@ pip install kindergarden[dynamic3d]
 </code></pre>
                 </div>
 
-                <p>For development or installing from source, see the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden" target="_blank">GitHub repository</a>.</p>
+                <p>For development or installing from source, see the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden" target="_blank" rel="noopener">GitHub repository</a>.</p>
 
                 <h3>Basic Usage (Gym API)</h3>
                 <div class="code-block">
@@ -295,8 +295,8 @@ import imageio.v2 as iio
 iio.imwrite("obs.png", img)  # open obs.png to see the scene!</code></pre>
                 </div>
 
-                <h3 class="collapsible-header" onclick="toggleCollapsible('object-centric-section')">
-                    Object-Centric States <span class="toggle-icon" id="object-centric-toggle">▼</span>
+                <h3 class="collapsible-header" role="button" tabindex="0" aria-expanded="false" aria-controls="object-centric-section" onclick="toggleCollapsible('object-centric-section')" onkeydown="handleCollapsibleKey(event, 'object-centric-section')">
+                    Object-Centric States <span class="toggle-icon" id="object-centric-toggle" aria-hidden="true">▼</span>
                 </h3>
 
                 <div class="collapsible-content" id="object-centric-section">
@@ -309,7 +309,7 @@ obs, _ = env.reset(seed=123)
 print(obs.pretty_str())</code></pre>
                     </div>
 
-                    <p>Here, <code>obs</code> is an <a href="https://github.com/tomsilver/relational-structs/blob/main/src/relational_structs/object_centric_state.py#L25" target="_blank">ObjectCentricState</a>, and the printout is:</p>
+                    <p>Here, <code>obs</code> is an <a href="https://github.com/tomsilver/relational-structs/blob/main/src/relational_structs/object_centric_state.py#L25" target="_blank" rel="noopener">ObjectCentricState</a>, and the printout is:</p>
 
                     <div class="code-block">
                         <pre><code>############################################################### STATE ###############################################################
@@ -346,7 +346,7 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                 </div>
 
                 <h3>Baselines</h3>
-                <p>We provide implementations of several baselines in the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines" target="_blank">kinder-baselines</a> repository. Installation and usage instructions are available there.</p>
+                <p>We provide implementations of several baselines in the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines" target="_blank" rel="noopener">kinder-baselines</a> repository. Installation and usage instructions are available there.</p>
 
                 <div class="challenges-grid">
                     <div class="challenge-card">
@@ -480,7 +480,7 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
             <div class="container">
                 <h2>Real Robot Validation</h2>
                 <div class="real-robots-content">
-                    <video class="real-robot-demo" autoplay loop muted playsinline>
+                    <video class="real-robot-demo" autoplay loop muted playsinline aria-label="Real-to-sim-to-real robot demonstration: a mobile manipulator performing KinDER tasks alongside their simulated counterparts">
                         <source src="assets/real2sim2real.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -519,9 +519,9 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
                 <h2>Contact</h2>
                 <p>Have questions, feedback, or found a bug? Please open an issue on GitHub:</p>
                 <ul>
-                    <li><a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden/issues" target="_blank">KinDER (environments)</a></li>
-                    <li><a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines/issues" target="_blank">KinDER Baselines</a></li>
-                    <li><a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-site/issues" target="_blank">Website</a></li>
+                    <li><a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden/issues" target="_blank" rel="noopener">KinDER (environments)</a></li>
+                    <li><a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-baselines/issues" target="_blank" rel="noopener">KinDER Baselines</a></li>
+                    <li><a href="https://github.com/Princeton-Robot-Planning-and-Learning/kinder-site/issues" target="_blank" rel="noopener">Website</a></li>
                 </ul>
             </div>
         </section>
@@ -539,13 +539,23 @@ recovered_vec_obs = env.observation_space.vectorize(object_centric_obs)</code></
         function toggleCollapsible(id) {
             const content = document.getElementById(id);
             const icon = document.getElementById(id.replace('-section', '-toggle'));
+            const header = document.querySelector('[aria-controls="' + id + '"]');
 
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
                 icon.textContent = '▼';
+                if (header) header.setAttribute('aria-expanded', 'false');
             } else {
                 content.style.maxHeight = content.scrollHeight + 'px';
                 icon.textContent = '▲';
+                if (header) header.setAttribute('aria-expanded', 'true');
+            }
+        }
+
+        function handleCollapsibleKey(event, id) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleCollapsible(id);
             }
         }
 
