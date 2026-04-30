@@ -89,7 +89,7 @@
                     </a>
                 </div>
 
-                <div class="tldr">
+                <div class="tldr" style="text-align: justify;">
                     <span class="tldr-label">tl;dr</span>
                     <p>KinDER is a stress test for Kinematic and Dynamic Embodied Reasoning with spatial relations, nonprehensile multi-object manipulation, combinatorial geometric constraints, tool use, and dynamic constraints. We evaluate imitiation learning (diffusion policies, VLAs), reinforcement learning (PPO, SAC, MBRL), foundation model-based planning (LLM, VLM), diffusion-based planning (GSC), and task and motion planning (bilevel planning). No methods pass. Physical reasoning remains a core open challenge for robotics.</p>
                 </div>
@@ -97,9 +97,9 @@
         </section>
         <span id="hero-end-sentinel" aria-hidden="true"></span>
 
-        <section id="hero">
+        <section id="hero" style="padding: 0 0 1rem;">
             <div class="container">
-                <p class="hover-instruction">Hover over the environments below to see them in action</p>
+                <p class="hover-instruction" style="margin-bottom: 0.5rem; margin-top: 0;">Hover over the environments below to see them in action</p>
                 <div class="demo-showcase">
                     <div class="demo-gif-grid">
                         <a href="environments/balancebeam3d/index.html" class="demo-gif-item" data-gif="kindergarden/docs/envs/assets/group_gifs/BalanceBeam3D.gif" data-static="environments/thumbnails/BalanceBeam3D.png">
@@ -262,11 +262,17 @@
                 <h2>Installation and Usage</h2>
                 <h3>Installation</h3>
 
-                <div class="code-block">
-                    <pre><code class="language-bash">pip install kindergarden  # all environment dependencies
+                <p>KinDER supports Python &gt;=3.10, &lt;3.13. The base install includes all environments:</p>
 
-# Or install only specific environment categories
-pip install kindergarden[kinematic2d]
+                <div class="code-block">
+                    <pre><code class="language-bash">pip install kindergarden  # installs everything
+</code></pre>
+                </div>
+
+                <p>If you only need a subset of environments, the following lightweight alternatives install just the dependencies for that category:</p>
+
+                <div class="code-block">
+                    <pre><code class="language-bash">pip install kindergarden[kinematic2d]
 pip install kindergarden[dynamic2d]
 pip install kindergarden[kinematic3d]
 pip install kindergarden[dynamic3d]

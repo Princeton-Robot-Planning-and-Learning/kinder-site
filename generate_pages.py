@@ -523,9 +523,9 @@ def generate_hero_section_html(groups):
     if not items:
         return ''
 
-    return f'''        <section id="hero">
+    return f'''        <section id="hero" style="padding: 0 0 1rem;">
             <div class="container">
-                <p class="hover-instruction">Hover over the environments below to see them in action</p>
+                <p class="hover-instruction" style="margin-bottom: 0.5rem; margin-top: 0;">Hover over the environments below to see them in action</p>
                 <div class="demo-showcase">
                     <div class="demo-gif-grid">
 {chr(10).join(items)}
