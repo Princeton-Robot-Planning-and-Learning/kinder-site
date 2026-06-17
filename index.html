@@ -270,17 +270,15 @@
 </code></pre>
                 </div>
 
-                <p>If you only need a subset of environments, the following lightweight alternatives install just the dependencies for that category:</p>
+                <p>If you only need one backend (for example the 2D environments, which need neither PyBullet nor MuJoCo), install the package without its dependencies and then that backend's requirements file:</p>
 
                 <div class="code-block">
-                    <pre><code class="language-bash">pip install kindergarden[kinematic2d]
-pip install kindergarden[dynamic2d]
-pip install kindergarden[kinematic3d]
-pip install kindergarden[dynamic3d]
+                    <pre><code class="language-bash">pip install --no-deps kindergarden
+pip install -r https://raw.githubusercontent.com/Princeton-Robot-Planning-and-Learning/kindergarden/main/requirements/kinematic2d.txt
 </code></pre>
                 </div>
 
-                <p>For development or installing from source, see the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden" target="_blank" rel="noopener">GitHub repository</a>.</p>
+                <p>Requirements files are provided for each backend (<code>kinematic2d</code>, <code>dynamic2d</code>, <code>kinematic3d</code>, <code>dynamic3d</code>). The two-step form is needed because pip extras can only add dependencies, never remove the backends already pulled in by the base install. For development or installing from source, see the <a href="https://github.com/Princeton-Robot-Planning-and-Learning/kindergarden" target="_blank" rel="noopener">GitHub repository</a>.</p>
 
                 <h3>Basic Usage (Gym API)</h3>
                 <div class="code-block">
